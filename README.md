@@ -38,6 +38,22 @@ nvidia-smi --query-gpu=compute_cap --format=csv | grep "10.0"  # confirm SM100
 python -c "import sys; print(sys.version_info[:2])"              # ≥ (3, 10)
 ```
 
+## Using with the `kernels` library
+
+To quickly get started using MSA kernels, you can use the [`kernels` library](https://github.com/huggingface/kernels):
+
+```py
+# make sure `kernels` is installed: `pip install -U kernels`
+from kernels import get_kernel
+
+kernel_module = get_kernel("MiniMaxAI/msa", version=0)
+sparse_atten_func = kernel_module.sparse_atten_func
+
+sparse_atten_func(...)
+```
+
+Check out the kernel on the Hugging Face Hub [here](https://huggingface.co/kernels/kernels-staging/msa).
+
 ## Install
 
 ```bash
